@@ -42,28 +42,68 @@ export type SeasonScoreDataType = {
 	badge: BadgeDataType | null;
 };
 
+// each model which is having an image associated will have this type of image
+export type DataImageType = {
+	id: number;
+	url: string;
+	width: number;
+	height: number;
+	hash: string;
+	caption: string;
+	alternativeText: string;
+};
+
 export type BadgeDataType = {
 	id: number;
 	name: string;
-	image: string;
+	image: DataImageType;
 };
 
-export type BannerType = {
+export type BannerDataType = {
 	id: number;
 	eye_catcher: string;
 	title: string;
-	image: string;
+	image: DataImageType;
 	link: string;
 };
 
-export type DataImageType = {
-	image: {
-		id: number;
-		url: string;
-		width: number;
-		height: number;
-		hash: string;
-		caption: string;
-		alternativeText: string;
-	};
+export type MemberDataType = {
+	id: number;
+	name: string;
+	image: DataImageType;
+	domain: string;
+	github?: string;
+	twitter?: string;
+	linkedin?: string;
+	facebook?: string;
+	website?: string;
+};
+
+export type GroupedMemberType = Record<string, Array<MemberDataType>>;
+
+export type ProjectDataType = {
+	id: number;
+	name: string;
+	repository: string;
+	members: string;
+	description: string;
+	logo: DataImageType;
+};
+
+export type BlogPostType = {
+	author: string;
+	categories: string[];
+	link: string;
+	image: string;
+	title: string;
+	date: string;
+};
+
+export type BlogPostDataType = {
+	author: string;
+	categories: string[];
+	link: string;
+	image: string;
+	title: string;
+	date: Date;
 };

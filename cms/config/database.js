@@ -1,4 +1,6 @@
-const productionConfig = ({ env }) => {
+// RECOMMENDED ONLY IF A REMOTE DATABASE CONNECTION IS RECEIVED
+// THE INTENDED DATABASE TO BE USED AS REMOTE DB HERE IS POSTGRES
+const remoteDBConfig = ({ env }) => {
 	const dbUriParse = require('pg-connection-string').parse;
 	const dbConfig = dbUriParse(env('DATABASE_URL'));
 
@@ -8,7 +10,7 @@ const productionConfig = ({ env }) => {
 			default: {
 				connector: 'bookshelf',
 				settings: {
-					client: 'postgres',
+					client: 'the database client to use',
 					database: dbConfig.database,
 					host: dbConfig.host,
 					port: dbConfig.port,
@@ -33,7 +35,7 @@ const fastConfig = () => ({
 			connector: 'bookshelf',
 			settings: {
 				client: 'sqlite',
-				filename: '.tmp/data.db',
+				filename: 'db/data.db',
 			},
 			options: {
 				useNullAsDefault: true,
@@ -49,24 +51,21 @@ const testingConfig = () => ({
 			connector: 'bookshelf',
 			settings: {
 				client: 'sqlite',
-				filename: '.tmp/test.db',
+				filename: '.tmp-test/test.db',
 			},
 			options: {
 				useNullAsDefault: true,
-				pool: {
-					min: 0,
-					max: 1,
-				},
 			},
 		},
 	},
 });
 
 const config =
-	process.env.FAST === 'TRUE'
-		? fastConfig
-		: process.env.TESTING === 'TRUE'
+	process.env.REMOTE_DB?.toUpperCase() === 'TRUE'
+		? remoteDBConfig
+		: process.env.TESTING?.toUpperCase() === 'TRUE' ||
+		  process.env.NODE_ENV?.toUpperCase() === 'TEST'
 		? testingConfig
-		: productionConfig;
+		: fastConfig;
 
 module.exports = config;
