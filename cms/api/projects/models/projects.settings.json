@@ -38,9 +38,6 @@
 		},
 		"order": {
 			"type": "integer"
-		},
-		"Github": {
-			"type": "string"
 		}
 	}
 }

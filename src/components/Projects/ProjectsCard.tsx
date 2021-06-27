@@ -65,16 +65,16 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 							variant="outlined"
 							color="primary"
 							startIcon={<GitHubIcon />}
-							href={projectInfo.Github}>
+							href="https://github.com">
 							GitHub
 						</Button>
-						{/* <Button
+						<Button
 							variant="outlined"
 							color="primary"
 							startIcon={<MoreIcon />}
 							href="https://github.com">
 							Know More
-						</Button> */}
+						</Button>
 					</CardActions>
 				</Card>
 			</Grid>
