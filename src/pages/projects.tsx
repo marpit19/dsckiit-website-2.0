@@ -33,13 +33,10 @@ export default function Home({ projects }: IProjects) {
 	return (
 		<>
 			<Layout pageName="PROJECTS">
-				<img src="https://i.imgur.com/tzzAJeX.png" className={styles.background_img} />
+				<img src="/images/mentors/background.png" className={styles.background_img} />
 				<Grid container className={classes.root}>
 					<Grid item md={6} xs={12} className={styles.container}>
-						<img
-							src="https://normat.com.pe/img/otros/trabajando.gif"
-							className={styles.intro_image}
-						/>
+						<img src="/images/projects/main.jpg" className={styles.intro_image} />
 					</Grid>
 					<Grid item md={6} className={styles.introImg}>
 						<h1 className={`${styles.header}`}>PROJECTS BY DSC KIIT</h1>
